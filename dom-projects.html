@@ -2,6 +2,42 @@
 <html>
   <head>
     <title>DOM Projects</title>
+    <style>
+      .subscribe-button {
+        border: none;
+        color: white;
+        background-color: black;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-bottom: 50px;
+      }
+
+      .is-subscribed {
+        background-color: rgb(240, 240, 240);
+        color: black;
+      }
+
+      .cost-input {
+        font-size: 15px;
+        padding: 10px;
+      }
+
+      .calculate-button {
+        font-size: 15px;
+        padding: 12px 20px;
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      body {
+        font-family: Arial;
+      }
+    </style>
   </head>
   <body>
     <p>YouTube Subscribe Button</p>
@@ -9,7 +45,7 @@
       onclick="
       subscribe();
     "
-      class="js-subscribe-button"
+      class="js-subscribe-button subscribe-button"
     >
       Subscribe
     </button>
@@ -17,15 +53,14 @@
     <p>Amazon Shipping Calculator</p>
     <input
       placeholder="Cost of order"
-      class="js-input"
+      class="js-input cost-input"
       onkeydown="
         handleCostKeyDown(event);
       "
     />
     <button
       onclick="
-      calculateTotal();
-    "
+      calculateTotal();" class="calculate-button"
     >
       Calculate
     </button>
@@ -40,9 +75,14 @@
       }
       function subscribe() {
         const buttonElement = document.querySelector(".js-subscribe-button");
-        if (buttonElement.innerText === "Subscribe")
+        if (buttonElement.innerText === "Subscribe") {
           buttonElement.innerText = "Subscribed";
-        else buttonElement.innerText = "Subscribe";
+          buttonElement.classList.add('is-subscribed');
+        }
+        else {
+          buttonElement.innerText = "Subscribe";
+          buttonElement.classList.remove('is-subscribed');
+        }
       }
 
       function calculateTotal() {
