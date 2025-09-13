@@ -34,7 +34,8 @@ body {
   margin-top: 60px;
 }
 
-.reset-button {
+.reset-button,
+.auto-button {
   background-color: white;
   color: black;
   border: none;
