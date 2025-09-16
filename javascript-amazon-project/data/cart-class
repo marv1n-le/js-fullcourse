@@ -1,3 +1,46 @@
+class Cart {
+  cartItems = undefined;
+  localStorageKey = undefined;
+  constructor(localStorageKey, cartItems) {
+    this.localStorageKey = localStorageKey;
+    this.cartItems = cartItems;
+  }
+
+  loadFromStorage() {
+    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+
+    if (!this.cartItems) {
+      this.cartItems = [
+        {
+          productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+          quantity: 2,
+          deliveryOptionId: "1",
+        },
+      ];
+    }
+  }
+  saveToStorage() {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+  }
+  addToCart(productId) {
+    let matchingItem;
+    this.cartItems.forEach((item) => {
+      if (productId === item.productId) {
+        matchingItem = item;
+      }
+    });
+  }
+  removeFromCart(productId) {
+    const newCart = [];
+    this.cartItems.forEach((item) => {
+      if (item.productId !== productId) {
+        newCart.push(item);
+      }
+    });
+    this.cartItems = newCart;
+    this.saveToStorage(this.localStorageKey);
+  }
+}
 
 function Cart(localStorageKey) {
   const cart = {
