@@ -4,7 +4,16 @@ import { formatCurrency } from "./utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { deliveryOptions } from "../data/deliveryOptions.js";
 
-console.log(dayjs());
+// console.log(dayjs());
+
+new Promise((resolve) => {
+  console.log("Fetching products...");
+  setTimeout(() => {
+    resolve(products);
+  }, 3000);
+}).then((products) => {
+  console.log(products);
+});
 
 
 const deliveryOptionId = cart.deliveryOptionId;
